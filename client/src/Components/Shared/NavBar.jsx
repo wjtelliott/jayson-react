@@ -49,9 +49,7 @@ const NavBar = () => {
         setAnchorElUser(null);
     };
 
-    return !isAuthenticated ? (
-        <Button onClick={loginWithRedirect}>Login</Button>
-    ) : (
+    return (
         <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -164,12 +162,25 @@ const NavBar = () => {
                     </Box>
 
                     {/* Avatar */}
-                    <NavBarAvatar
-                        settings={settings}
-                        handleCloseUserMenu={handleCloseUserMenu}
-                        handleOpenUserMenu={handleOpenUserMenu}
-                        anchorElUser={anchorElUser}
-                    />
+                    {(!isAuthenticated && (
+                        // for some reason the text of this button is the same as the theme
+                        <Button
+                            sx={{
+                                color: 'white',
+                                backgroundColor: 'primary.muted',
+                            }}
+                            onClick={loginWithRedirect}
+                        >
+                            Login
+                        </Button>
+                    )) || (
+                        <NavBarAvatar
+                            settings={settings}
+                            handleCloseUserMenu={handleCloseUserMenu}
+                            handleOpenUserMenu={handleOpenUserMenu}
+                            anchorElUser={anchorElUser}
+                        />
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>

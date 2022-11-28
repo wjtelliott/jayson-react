@@ -56,11 +56,10 @@ Default env contents:
 
 ### Default client routes
 
-| Route        | Expectation                                                                 |
-| ------------ | --------------------------------------------------------------------------- |
-| `/`          | Landing Page                                                                |
-| `/authorize` | Redirect page from Auth0. Send user data to backend and redirect to Landing |
-| `*`          | 404 Page                                                                    |
+| Route | Expectation  |
+| ----- | ------------ |
+| `/`   | Landing Page |
+| `*`   | 404 Page     |
 
 ### Default API test routes
 

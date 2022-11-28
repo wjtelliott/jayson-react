@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Page404 from './Components/404/Page404';
 import LandingPage from './Components/Home/LandingPage';
-import AuthorizePage from './Components/Auth/AuthorizePage';
 import NavBar from './Components/Shared/NavBar';
 import './index.css';
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -25,10 +24,6 @@ root.render(
                 <Route
                     path="/"
                     element={<LandingPage />}
-                />
-                <Route
-                    path="/authorize"
-                    element={<AuthorizePage />}
                 />
                 <Route
                     path="*"

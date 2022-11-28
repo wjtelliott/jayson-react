@@ -6,6 +6,7 @@ import { centeredFlexBox } from '../Shared/StylePresets';
 
 const LandingPage = function () {
     const [responseData, setResponseData] = useState({ status: 'Loading' });
+    const [backendAlive, setBackendAlive] = useState(true);
 
     useEffect(() => {
         const abortContoller = new AbortController();
@@ -21,23 +22,36 @@ const LandingPage = function () {
             response
                 .json()
                 .then(data => setResponseData(data))
-                .catch(_ =>
-                    setResponseData({ error: 'Response was not JSON' })
-                );
+                .catch(_ => {
+                    setResponseData({ error: 'Response was not JSON format' });
+                    setBackendAlive(false);
+                });
         };
         fetchData();
 
         return () => abortContoller.abort();
     }, []);
 
+    const inlineStyleContent = `
+#content-container > * {
+    width: 100%;
+}
+`;
+
     return (
-        <Box sx={{ ...centeredFlexBox, p: 3, my: 3 }}>
+        <Box
+            id="content-container"
+            sx={{ ...centeredFlexBox, p: 3, my: 3 }}
+        >
+            {/* We can also inline style here */}
+            <style>{inlineStyleContent}</style>
+
             <Typography
                 variant="h3"
                 textAlign="center"
             >
                 Here is the env var test:{' '}
-                {process.env.REACT_APP_TEST ?? 'NO .ENV LOADED'}
+                {process.env.REACT_APP_TEST ?? 'error: NO .ENV LOADED'}
             </Typography>
             <Typography
                 variant="h4"
@@ -46,10 +60,15 @@ const LandingPage = function () {
                 Here is a request to our linked back-end:{' '}
                 {JSON.stringify(responseData)}
             </Typography>
-            <img
-                alt="A sports banner"
-                src="/banner.jpg"
-            />
+            {!backendAlive && (
+                <Typography
+                    variant="h5"
+                    textAlign="center"
+                >
+                    If you are working client side only, the server will not
+                    respond.
+                </Typography>
+            )}
         </Box>
     );
 };
