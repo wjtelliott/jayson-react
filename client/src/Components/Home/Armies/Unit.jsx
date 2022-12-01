@@ -11,6 +11,7 @@ function Unit({
     weapon,
     desc,
     misc,
+    pic,
 }) {
     const [showUnit, setShowUnit] = useState(false);
 
@@ -22,6 +23,30 @@ function Unit({
         const formattedUnitProperties = [];
         for (const property in unitObject) {
             if (!unitObject[property]) continue;
+
+            // edge case for picture! we can use starts with or by property name!
+            //if (unitObject[property].toString().startsWith('http')) {
+            if (property === 'pic') {
+                formattedUnitProperties.push(
+                    <Box sx={{ ...centeredFlexBox }}>
+                        <Typography
+                            variant="p"
+                            fontSize="1.5em"
+                            textAlign="center"
+                            sx={{ width: '100%', display: 'block' }}
+                        >
+                            {titleCase(property)}:{' '}
+                        </Typography>
+                        <img
+                            height="auto"
+                            width="50%"
+                            src={unitObject[property]}
+                        />
+                    </Box>
+                );
+                continue;
+            }
+
             formattedUnitProperties.push(
                 <Typography
                     variant="p"
@@ -54,8 +79,9 @@ function Unit({
                         strength,
                         attack,
                         weapon,
-                        desc,
                         misc,
+                        desc,
+                        pic,
                     })}
                 </Box>
             )) || (
