@@ -21,3 +21,8 @@ code {
 body {
     margin: 0;
 }
+
+.unit-container {
+    background-color: rgb(49, 49, 49);
+    border-radius: 20px;
+}
