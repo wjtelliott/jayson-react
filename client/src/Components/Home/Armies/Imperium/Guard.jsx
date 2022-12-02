@@ -15,4 +15,4 @@ function Guard() {
         />
     );
 }
-export default Guard;
+export default { element: Guard, name: 'asdasd' };

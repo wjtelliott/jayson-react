@@ -1,7 +1,7 @@
 import React from 'react';
 import Unit from '../Unit';
-const unitName = 'Ork Boyz';
-function OrkBoyz() {
+const unitName = 'Ork Slugga';
+function OrkSlugga() {
     return (
         <Unit
             name={unitName}
@@ -9,8 +9,8 @@ function OrkBoyz() {
             wounds={1}
             strength={5}
             attack={2}
-            weapon="Choppa"
+            weapon="Slugga"
         />
     );
 }
-export default { name: unitName, element: OrkBoyz };
+export default { name: unitName, element: OrkSlugga };

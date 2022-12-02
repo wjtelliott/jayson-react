@@ -2,6 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 import { centeredFlexBox } from '../../Shared/StylePresets';
+import PushPinIcon from '@mui/icons-material/PushPin';
 function Unit({
     name,
     toughness,
@@ -13,7 +14,7 @@ function Unit({
     misc,
     pic,
 }) {
-    const [showUnit, setShowUnit] = useState(false);
+    const [pinned, setPinned] = useState(false);
 
     function titleCase(str) {
         if (!str || str.length < 2) return str;
@@ -60,19 +61,47 @@ function Unit({
         }
         return formattedUnitProperties;
     }
-    function handleUnitClick() {
-        setShowUnit(!showUnit);
+
+    function handlePinClick(e) {
+        if (e?.target?.tagName !== 'path') {
+            //edge case, they clicked on the svg element and it still calls this
+            handlePinClick({ target: e.target.children[0] });
+            return;
+        }
+        const isPinned = e.target?.className?.baseVal === 'pinned';
+
+        setPinned(!isPinned);
+        e.target.setAttribute('class', `${!isPinned ? 'pinned' : 'unpinned'}`);
     }
+
+    function buildUnpinnedInfo(unitName) {
+        return (
+            <Box sx={{ ...centeredFlexBox }}>
+                <Typography sx={{ alignSelf: 'center' }}>{unitName}</Typography>
+            </Box>
+        );
+    }
+
     return (
         <Box sx={{ ...centeredFlexBox, width: 1 }}>
-            {(showUnit && (
-                <Box
-                    className="unit-container"
-                    width="50%"
-                    sx={{ ...centeredFlexBox, p: 1, m: 2 }}
-                >
-                    <button onClick={handleUnitClick}>Close Unit</button>
-                    {buildUnitInfo({
+            <Box
+                className="unit-container"
+                width="50%"
+                sx={{ ...centeredFlexBox, p: 1, m: 2, position: 'relative' }}
+            >
+                <PushPinIcon
+                    onClick={handlePinClick}
+                    className="pushPin"
+                    sx={{
+                        position: 'absolute',
+                        top: '25%',
+                        left: '95%',
+                        zIndex: 999,
+                        cursor: 'pointer',
+                    }}
+                />
+                {(pinned &&
+                    buildUnitInfo({
                         name,
                         toughness,
                         wounds,
@@ -82,11 +111,9 @@ function Unit({
                         misc,
                         desc,
                         pic,
-                    })}
-                </Box>
-            )) || (
-                <button onClick={handleUnitClick}>{name ?? 'unnamed'}</button>
-            )}
+                    })) ||
+                    buildUnpinnedInfo(name)}
+            </Box>
         </Box>
     );
 }

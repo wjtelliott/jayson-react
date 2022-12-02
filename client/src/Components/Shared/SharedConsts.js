@@ -1,3 +1,3 @@
-const logoTitle = 'Mono Shell';
+const logoTitle = 'HOME';
 
 module.exports = { logoTitle };

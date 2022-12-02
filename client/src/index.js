@@ -22,12 +22,8 @@ root.render(
             <NavBar />
             <Routes>
                 <Route
-                    path="/"
-                    element={<LandingPage />}
-                />
-                <Route
                     path="*"
-                    element={<Page404 />}
+                    element={<LandingPage />}
                 />
             </Routes>
         </BrowserRouter>

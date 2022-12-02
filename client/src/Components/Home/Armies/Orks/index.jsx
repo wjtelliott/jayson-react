@@ -1,2 +1,3 @@
 import OrkBoyz from './OrkBoyz';
-export default { OrkBoyz };
+import OrkSlugga from './OrkSlugga';
+export default { OrkBoyz, OrkSlugga };

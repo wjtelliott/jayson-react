@@ -19,7 +19,7 @@ import NavBarAvatar from './NavBarAvatar';
 import { logoTitle } from './SharedConsts';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Orkz', 'Imperium'];
 const settings = ['Profile', 'Account Settings'];
 
 const NavBar = () => {
@@ -53,9 +53,9 @@ const NavBar = () => {
         <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <MonetizationOnIcon
+                    {/* <MonetizationOnIcon
                         sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-                    />
+                    /> */}
 
                     <Typography
                         variant="h6"
