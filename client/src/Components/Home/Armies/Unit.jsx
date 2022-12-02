@@ -20,7 +20,7 @@ function Unit({
         if (!str || str.length < 2) return str;
         return str[0].toUpperCase().concat(str.slice(1).toLowerCase());
     }
-    function buildUnitInfo(unitObject) {
+    function buildPinnedInfo(unitObject) {
         const formattedUnitProperties = [];
         for (const property in unitObject) {
             if (!unitObject[property]) continue;
@@ -64,8 +64,10 @@ function Unit({
 
     function handlePinClick(e) {
         if (e?.target?.tagName !== 'path') {
-            //edge case, they clicked on the svg element and it still calls this
-            handlePinClick({ target: e.target.children[0] });
+            //edge case, they clicked on the svg element and it still calls this due to propagation
+            // recur and make target === child
+            if (e.target?.children?.[0].tagName === 'path')
+                handlePinClick({ target: e.target.children[0] });
             return;
         }
         const isPinned = e.target?.className?.baseVal === 'pinned';
@@ -101,7 +103,7 @@ function Unit({
                     }}
                 />
                 {(pinned &&
-                    buildUnitInfo({
+                    buildPinnedInfo({
                         name,
                         toughness,
                         wounds,
