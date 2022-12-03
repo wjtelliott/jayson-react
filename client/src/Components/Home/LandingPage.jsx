@@ -14,13 +14,11 @@ const LandingPage = function () {
             return;
         }
         const result = [];
-        const unitNames = [];
         // todo: ew
         const _fix = param[0].toUpperCase().concat(param.slice(1));
         for (const unitFile in Armies[_fix]) {
             const unit = Armies[_fix][unitFile];
-            unitNames.push(unit.name);
-            result.push(React.createElement(unit.element));
+            result.push(React.createElement(unit));
         }
         setUnitData(result);
     }, [param]);
