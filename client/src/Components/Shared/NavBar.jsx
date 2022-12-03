@@ -19,7 +19,7 @@ import NavBarAvatar from './NavBarAvatar';
 import { logoTitle } from './SharedConsts';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const pages = ['Orkz', 'Imperium'];
+const pages = ['Orkz', 'Imperium', 'Dark Angels'];
 const settings = ['Profile', 'Account Settings'];
 
 const NavBar = () => {

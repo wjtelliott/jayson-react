@@ -5,13 +5,18 @@ import { centeredFlexBox } from '../../Shared/StylePresets';
 import PushPinIcon from '@mui/icons-material/PushPin';
 function Unit({
     name,
+    movement,
+    ws,
+    bs,
+    strength,
     toughness,
     wounds,
-    strength,
     attack,
+    leadership,
+    save,
     weapon,
-    desc,
     misc,
+    desc,
     pic,
 }) {
     const [pinned, setPinned] = useState(false);
@@ -105,10 +110,15 @@ function Unit({
                 {(pinned &&
                     buildPinnedInfo({
                         name,
+                        movement,
+                        ws,
+                        bs,
+                        strength,
                         toughness,
                         wounds,
-                        strength,
                         attack,
+                        leadership,
+                        save,
                         weapon,
                         misc,
                         desc,

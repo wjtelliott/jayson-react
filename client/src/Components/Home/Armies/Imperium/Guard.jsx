@@ -7,7 +7,7 @@ function Guard() {
             toughness={3}
             wounds={1}
             strength={3}
-            attack={3}
+            attack={1}
             weapon="LAZZOR"
             misc="Shoots his lazor"
             desc="A regular dude"
@@ -15,4 +15,4 @@ function Guard() {
         />
     );
 }
-export default { element: Guard, name: 'asdasd' };
+export default Guard;

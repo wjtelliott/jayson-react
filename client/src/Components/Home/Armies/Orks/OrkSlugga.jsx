@@ -13,4 +13,4 @@ function OrkSlugga() {
         />
     );
 }
-export default { name: unitName, element: OrkSlugga };
+export default OrkSlugga;

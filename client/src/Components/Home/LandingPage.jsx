@@ -18,6 +18,7 @@ const LandingPage = function () {
         const _fix = param[0].toUpperCase().concat(param.slice(1));
         for (const unitFile in Armies[_fix]) {
             const unit = Armies[_fix][unitFile];
+            console.log(unit.toString());
             result.push(React.createElement(unit));
         }
         setUnitData(result);
