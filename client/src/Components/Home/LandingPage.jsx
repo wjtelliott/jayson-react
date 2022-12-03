@@ -33,7 +33,7 @@ const LandingPage = function () {
                     fontSize: '2.5em',
                 }}
             >
-                Welcome to the Warhammer40k test DB landing LandingPage
+                Welcome to the Warhammer40k DB landing LandingPage
             </Typography>
             {(!(param === '') && (
                 <Box
